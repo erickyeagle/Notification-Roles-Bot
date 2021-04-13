@@ -5,8 +5,8 @@ Notification Roles Bot is a Discord bot that simplifies the use of what we coine
 This is a self-hosted Discord bot. You will need to provide your own hosting. The host environment needs to the following software packages:
 
 * [Latest Notification Roles Bot source code](https://github.com/erickyeagle/notification-roles-bot/releases)
-* Python 3.5.3+
-* Poetry
+* [Python 3.5.3+](https://www.python.org/downloads)
+* [Poetry](https://python-poetry.org)
 
 ## Contributing
-If you would like to contribute to this project, you can [file an issue](https://github.com/erickyeagle/notification-roles-bot/issues/new) or submit a pull request from a forked repository. If you would like to contribute, but don't have any coding experience, you can ask questions or propose changes over at our [discussions page](https://github.com/erickyeagle/notification-roles-bot/discussions).
+If you would like to contribute to this project, you can [file an issue](https://github.com/erickyeagle/notification-roles-bot/issues/new) or [submit a pull request](https://github.com/erickyeagle/notification-roles-bot/compare) from a forked repository. If you would like to contribute, but don't have any coding experience, you can ask questions or propose changes over at our [discussions page](https://github.com/erickyeagle/notification-roles-bot/discussions).
