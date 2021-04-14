@@ -1,3 +1,5 @@
+[![](https://img.shields.io/github/v/release/erickyeagle/notification-roles-bot)](https://github.com/erickyeagle/notification-roles-bot/releases)
+
 # Notification Roles Bot
 Notification Roles Bot is a Discord bot that simplifies the use of no permission, mentionable roles that a user wants to subscribe to.
 
