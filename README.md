@@ -13,7 +13,7 @@ This is a self-hosted Discord bot. You will need to provide your own hosting. Th
 ## Usage
 In order to run this Discord bot, you will need to create a bot application from the Discord developer's portal. The bot's token will be used below.
 
-1. Deploying the source code to your host.
+1. Copy all source code files to the host environment.
 2. Install Poetry dependencies.
 
     ```
