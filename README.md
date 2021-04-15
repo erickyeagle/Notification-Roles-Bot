@@ -27,7 +27,7 @@ In order to run this Discord bot, you will need to create a bot application from
 4. Run Notification Roles Bot.
 
     ```
-    poetry run notification_roles_bot.py
+    poetry run python notification_roles_bot.py
     ```
 
 **Note:** If you are running the bot on [Replit](https://replit.com) with a free account, you will need to keep the bot alive using something like [replit-keep-alive](https://github.com/erickyeagle/replit-keep-alive).
