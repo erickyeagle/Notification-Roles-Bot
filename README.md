@@ -19,7 +19,7 @@ In order to run this Discord bot, you will need to create a bot application from
     ```
     poetry install --no-dev
     ```
-3. Export the ```DISCORD_BOT_TOKEN``` environment variable. The method of exporting of this environment variable may depend on the host environment. Refer to the documentation for your host environment for the correct approach to use. You can export the environment variable via the command line.
+3. Export the ```DISCORD_BOT_TOKEN``` environment variable. The method of exporting of this environment variable may depend on the host environment. Refer to the documentation for your host environment for the correct approach to use. One option is to export the environment variable via the command line.
 
     ```
     export DISCORD_BOT_TOKEN=<token>
@@ -27,7 +27,7 @@ In order to run this Discord bot, you will need to create a bot application from
 4. Run Notification Roles Bot.
 
     ```
-    python notification_roles_bot.py
+    poetry run notification_roles_bot.py
     ```
 
 **Note:** If you are running the bot on [Replit](https://replit.com) with a free account, you will need to keep the bot alive using something like [replit-keep-alive](https://github.com/erickyeagle/replit-keep-alive).
