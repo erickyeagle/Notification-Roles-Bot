@@ -40,7 +40,7 @@ def is_notification_role(guild: Guild, role: Role) -> bool:
            role.permissions == Permissions.none() and \
            role in guild.me.roles
 
-# Loads the Discord bot token from the .env file and starts the bot.
+# Loads the Discord bot token from the environment and starts the bot.
 def run():
     discord_bot_token: str = os.environ.get('DISCORD_BOT_TOKEN')
     if not discord_bot_token:
