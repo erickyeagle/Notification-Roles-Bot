@@ -42,11 +42,11 @@ def is_notification_role(guild: Guild, role: Role) -> bool:
 
 # Loads the Discord bot token from the environment and starts the bot.
 def run():
-    discord_bot_token: str = os.environ.get('DISCORD_BOT_TOKEN')
-    if not discord_bot_token:
-        print('The environment variable "DISCORD_BOT_TOKEN" is not set!', file = sys.stderr)
+    notification_roles_bot_token: str = os.environ.get('NOTIFICATION_ROLES_BOT_TOKEN')
+    if not notification_roles_bot_token:
+        print('The environment variable "NOTIFICATION_ROLES_BOT_TOKEN" is not set!', file = sys.stderr)
         return
-    bot.run(discord_bot_token)
+    bot.run(notification_roles_bot_token)
 
 # This is the initial bot command entrance. This bot uses command groups for specific behavior.
 @bot.group(case_insensitive = True)
