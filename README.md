@@ -7,7 +7,13 @@ Notification Roles Bot is a Discord bot that simplifies the use of no permission
 ## Installation
 This is a self-hosted Discord bot. You will need to provide your own hosting. The host environment needs to have the following software packages:
 
-* [Latest Notification Roles Bot source code](https://github.com/erickyeagle/notification-roles-bot/releases)
+* Latest Notification Roles Bot source code
+	* [Download a release package](https://github.com/erickyeagle/notification-roles-bot/releases)
+	* Clone the repository via Git
+
+		```
+		git clone https://github.com/erickyeagle/notification-roles-bot.git
+		```
 * [Python 3.5.3+](https://www.python.org/downloads)
 * [Poetry](https://python-poetry.org)
 
