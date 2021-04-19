@@ -19,7 +19,7 @@ ROLE_NOT_COMPATIBLE_ERROR      = 'Uh-oh...the role {0.mention} is not a notifica
 ROLE_NOT_FOUND_IN_GUILD_ERROR  = 'Uh-oh...your guild does not have the role "{0}"!'
 ROLE_NOT_FOUND_IN_MEMBER_ERROR = 'Uh-oh...you don\'t have the role {0.mention}!'
 ROLE_REMOVED_FROM_MEMBER       = 'The role {0.mention} has been removed from you!'
-SYNTAX                         = 'Syntax: !nr {list | {add | sub[scribe] | unsub[scribe]} ROLE}'
+SYNTAX                         = 'Syntax: !nr {list | {add | sub[scribe] | unsub[scribe]} <role>}'
 UNHANDLED_EXCEPTION            = 'It looks like you found a bug in Notification Roles Bot. If you would like to help us out, please file an issue on [GitHub](https://github.com/erickyeagle/notification-roles-bot/issues). Thank you!'
 
 # Initializes the bot.
@@ -42,11 +42,11 @@ def is_notification_role(guild: Guild, role: Role) -> bool:
 
 # Loads the Discord bot token from the environment and starts the bot.
 def run():
-    discord_bot_token: str = os.environ.get('DISCORD_BOT_TOKEN')
-    if not discord_bot_token:
-        print('The environment variable "DISCORD_BOT_TOKEN" is not set!', file = sys.stderr)
+    notification_roles_bot_token: str = os.environ.get('NOTIFICATION_ROLES_BOT_TOKEN')
+    if not notification_roles_bot_token:
+        print('The environment variable "NOTIFICATION_ROLES_BOT_TOKEN" is not set!', file = sys.stderr)
         return
-    bot.run(discord_bot_token)
+    bot.run(notification_roles_bot_token)
 
 # This is the initial bot command entrance. This bot uses command groups for specific behavior.
 @bot.group(case_insensitive = True)
