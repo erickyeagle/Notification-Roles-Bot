@@ -19,7 +19,7 @@ ROLE_NOT_COMPATIBLE_ERROR      = 'Uh-oh...the role {0.mention} is not a notifica
 ROLE_NOT_FOUND_IN_GUILD_ERROR  = 'Uh-oh...your guild does not have the role "{0}"!'
 ROLE_NOT_FOUND_IN_MEMBER_ERROR = 'Uh-oh...you don\'t have the role {0.mention}!'
 ROLE_REMOVED_FROM_MEMBER       = 'The role {0.mention} has been removed from you!'
-SYNTAX                         = 'Syntax: !nr {list | {add | sub[scribe] | unsub[scribe]} ROLE}'
+SYNTAX                         = 'Syntax: !nr {list | {add | sub[scribe] | unsub[scribe]} <role>}'
 UNHANDLED_EXCEPTION            = 'It looks like you found a bug in Notification Roles Bot. If you would like to help us out, please file an issue on [GitHub](https://github.com/erickyeagle/notification-roles-bot/issues). Thank you!'
 
 # Initializes the bot.
