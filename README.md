@@ -39,5 +39,20 @@ In order to run this Discord bot, you will need to create a bot application from
 
 **Note:** If you are running the bot on [Replit](https://replit.com) with a free account, you will need to keep the bot alive using something like [replit-keep-alive](https://github.com/erickyeagle/replit-keep-alive).
 
+## Bot Commands
+These commands must be issued from inside a guild context (ie. not in a private message).
+
+`!nr add <role>`  
+Adds a notification role to the guild.
+
+`!nr list`  
+Lists all notification roles for the current guild.
+
+`!nr sub[scribe] <role>`  
+Subscribes a user to a notification role.
+
+`!nr unsub[scribe] <role>`  
+Unsubscribes a user from a notification role.
+
 ## Contributing
 If you would like to contribute to this project, you can [file an issue](https://github.com/erickyeagle/notification-roles-bot/issues/new) or [submit a pull request](https://github.com/erickyeagle/notification-roles-bot/compare) from a forked repository. If you would like to contribute, but don't have any coding experience, you can ask questions or propose changes over at our [discussions page](https://github.com/erickyeagle/notification-roles-bot/discussions).
