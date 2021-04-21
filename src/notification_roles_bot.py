@@ -5,7 +5,7 @@ import os
 import sys
 from discord import Embed, Guild, Member, Permissions, Role
 from discord.ext.commands import Bot, bot_has_guild_permissions, CommandError, CommandInvokeError, CommandNotFound, Context, guild_only, MissingRequiredArgument, NoPrivateMessage, RoleConverter, TooManyArguments
-from typing import Optional
+from typing import List, Optional
 
 # Strings
 GUILD_CONTEXT_REQUIRED_ERROR   = 'Uh-oh...this command is only valid in a guild context!'
@@ -41,8 +41,8 @@ def is_notification_role(guild: Guild, role: Role) -> bool:
            role in guild.me.roles
 
 # Loads the Discord bot token from the environment and starts the bot.
-def run():
-    notification_roles_bot_token: str = os.environ.get('NOTIFICATION_ROLES_BOT_TOKEN')
+def run() -> None:
+    notification_roles_bot_token: Optional[str] = os.environ.get('NOTIFICATION_ROLES_BOT_TOKEN')
     if not notification_roles_bot_token:
         print('The environment variable "NOTIFICATION_ROLES_BOT_TOKEN" is not set!', file = sys.stderr)
         return
@@ -52,7 +52,7 @@ def run():
 @bot.group(case_insensitive = True)
 @bot_has_guild_permissions(manage_roles = True, read_messages = True, send_messages = True)
 @guild_only()
-async def nr(context: Context):
+async def nr(context: Context) -> None:
     if context.invoked_subcommand is None:
         raise CommandInvokeError
 
@@ -60,14 +60,17 @@ async def nr(context: Context):
 @nr.command(ignore_extra = False)
 @bot_has_guild_permissions(manage_roles = True, read_messages = True, send_messages = True)
 @guild_only()
-async def add(context: Context, role_str: str):
+async def add(context: Context, role_str: str) -> None:
     role: Optional[Role] = await convert_str_to_role(context, role_str)
     if role is not None:
         await context.reply(embed = Embed(description = ROLE_FOUND_IN_GUILD_ERROR.format(role)))
         return
-    guild:       Optional[Guild] = context.guild
-    permissions: Permissions     = Permissions().none()
-    role: Optional[Role] = await guild.create_role(mentionable = True, name = role_str, permissions = permissions)
+    guild: Optional[Guild] = context.guild
+    if guild is None:
+        raise NoPrivateMessage
+        return
+    permissions: Permissions = Permissions().none()
+    role = await guild.create_role(mentionable = True, name = role_str, permissions = permissions)
     if role is None:
         await context.reply(embed = Embed(description = ROLE_ADD_TO_GUILD_ERROR.format(role_str)))
         return
@@ -78,9 +81,12 @@ async def add(context: Context, role_str: str):
 @nr.command(ignore_extra = False)
 @bot_has_guild_permissions(manage_roles = True, read_messages = True, send_messages = True)
 @guild_only()
-async def list(context: Context):
+async def list(context: Context) -> None:
     guild: Optional[Guild] = context.guild
-    roles: [Role]          = [role for role in guild.roles if is_notification_role(guild, role)]
+    if guild is None:
+        raise NoPrivateMessage
+        return
+    roles: List[Role] = [role for role in guild.roles if is_notification_role(guild, role)]
     if roles is not None and len(roles) > 0:
         await context.reply(embed = Embed(description = ", ".join(map(lambda role: role.mention, roles))))
 
@@ -88,7 +94,7 @@ async def list(context: Context):
 @nr.command(aliases = ['sub'], ignore_extra = False)
 @bot_has_guild_permissions(manage_roles = True, read_messages = True, send_messages = True)
 @guild_only()
-async def subscribe(context: Context, role_str: str):
+async def subscribe(context: Context, role_str: str) -> None:
     role: Optional[Role] = await convert_str_to_role(context, role_str)
     if role is None:
         await context.reply(embed = Embed(description = ROLE_NOT_FOUND_IN_GUILD_ERROR.format(role_str)))
@@ -108,12 +114,15 @@ async def subscribe(context: Context, role_str: str):
 @nr.command(aliases = ['unsub'], ignore_extra = False)
 @bot_has_guild_permissions(manage_roles = True, read_messages = True, send_messages = True)
 @guild_only()
-async def unsubscribe(context: Context, role_str: str):
+async def unsubscribe(context: Context, role_str: str) -> None:
     role: Optional[Role] = await convert_str_to_role(context, role_str)
     if role is None:
         await context.reply(embed = Embed(description = ROLE_NOT_FOUND_IN_GUILD_ERROR.format(role_str)))
         return
     guild: Optional[Guild] = context.guild
+    if guild is None:
+        raise NoPrivateMessage
+        return
     if not is_notification_role(guild, role):
         await context.reply(embed = Embed(description = ROLE_NOT_COMPATIBLE_ERROR.format(role)))
         return
@@ -128,7 +137,7 @@ async def unsubscribe(context: Context, role_str: str):
 
 # The default command error handler provided by the bot.
 @bot.event
-async def on_command_error(context: Context, error: CommandError):
+async def on_command_error(context: Context, error: CommandError) -> None:
     if isinstance(error, CommandNotFound):
         return
     if isinstance(error, (CommandInvokeError, MissingRequiredArgument, TooManyArguments)):
@@ -143,7 +152,7 @@ async def on_command_error(context: Context, error: CommandError):
 
 # Called when the client is done preparing the data received from Discord.
 @bot.event
-async def on_ready():
+async def on_ready() -> None:
     print('\n{0.user} is online!'.format(bot))
 
 # The "main" method essentially. The body of this conditional is executed when this script is
